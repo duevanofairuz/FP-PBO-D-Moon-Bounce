@@ -3,6 +3,8 @@ package com.pu;
 import java.awt.*;
 import java.util.*;
 
+import com.brocode.GamePanel;
+
 public class PUsmallerball extends PowerUp{
 
 //	Random random;
@@ -10,8 +12,8 @@ public class PUsmallerball extends PowerUp{
 //	int yVelocity;
 //	int initialSpeed = 4;
 	
-	public PUsmallerball(int x, int y, int width, int height){
-		super(x,y,width,height);
+	public PUsmallerball(GamePanel panel, int x, int y, int width, int height){
+		super(panel, x, y, width, height);
 //		random = new Random();
 //		int randomXDirection = random.nextInt(2);
 //		if(randomXDirection == 0)
@@ -36,7 +38,8 @@ public class PUsmallerball extends PowerUp{
 //		y += yVelocity;
 //	}
 	public void draw(Graphics g) {
-		g.setColor(Color.MAGENTA);
-		g.fillRect(x, y, width, height);
+//		g.setColor(Color.MAGENTA);
+//		g.fillRect(x, y, width, height);
+		g.drawImage(panel.pusmaller, x, y, width, height, panel);
 	}
 }

@@ -3,15 +3,19 @@ package com.pu;
 import java.awt.*;
 import java.util.*;
 
+import com.brocode.GamePanel;
+
 public abstract class PowerUp extends Rectangle{
 
+	GamePanel panel;
 	Random random;
 	int xVelocity;
 	int yVelocity;
 	int initialSpeed = 4;
 	
-	public PowerUp(int x, int y, int width, int height){
-		super(x,y,width,height);
+	public PowerUp(GamePanel panel, int x, int y, int width, int height){
+		super(x, y, width, height);
+		this.panel = panel;
 		random = new Random();
 		int randomXDirection = random.nextInt(2);
 		if(randomXDirection == 0)

@@ -3,6 +3,8 @@ package com.pu;
 import java.awt.*;
 import java.util.*;
 
+import com.brocode.GamePanel;
+
 public class PUshorterpaddle extends PowerUp{
 
 //	Random random;
@@ -10,8 +12,8 @@ public class PUshorterpaddle extends PowerUp{
 //	int yVelocity;
 //	int initialSpeed = 4;
 	
-	public PUshorterpaddle(int x, int y, int width, int height){
-		super(x,y,width,height);
+	public PUshorterpaddle(GamePanel panel, int x, int y, int width, int height){
+		super(panel, x, y, width, height);
 //		random = new Random();
 //		int randomXDirection = random.nextInt(2);
 //		if(randomXDirection == 0)
@@ -29,7 +31,9 @@ public class PUshorterpaddle extends PowerUp{
 //		y += yVelocity;
 //	}
 	public void draw(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.fillRect(x, y, width, height);
+//		g.setColor(Color.WHITE);
+//		g.fillRect(x, y, width, height);
+//		g.drawImage(panel.pushorter, x, y, panel);
+		g.drawImage(panel.pushorter, x, y, width, height, panel);
 	}
 }
