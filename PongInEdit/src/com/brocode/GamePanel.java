@@ -17,17 +17,15 @@ import com.pu.PowerUp;
 
 public class GamePanel extends JPanel implements Runnable{
 
+	// STATIC SIZE
 	static final int GAME_WIDTH = 1280;
 	static final int GAME_HEIGHT = (int)(GAME_WIDTH * (0.5555));
 	static final int PADDLE_WIDTH = 25;
-<<<<<<< HEAD
 	static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH,GAME_HEIGHT);
+	
+	// VARIABLE SIZE
 	int BALL_DIAMETER = 40;
 	int PADDLE_HEIGHT = 100;
-=======
-	static final int PADDLE_HEIGHT = 100;
-	
->>>>>>> 9c37ffd3d7bfcca1919ae900243c35b301ac8f1a
 	int BALL_BIG = 100;
 	int BALL_SMALL = 20;
 	
