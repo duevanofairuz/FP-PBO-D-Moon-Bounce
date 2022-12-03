@@ -20,7 +20,11 @@ public class UI {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, gWidth, gHeight);
 		
+<<<<<<< HEAD
 		g.drawImage(panel.logo, gWidth/2-100, gHeight/2-100, panel);
+=======
+		//g.drawImage(panel.moonBounce, gWidth/2-50, gHeight/2-50, panel);
+>>>>>>> 9c37ffd3d7bfcca1919ae900243c35b301ac8f1a
 		
 //      String msg = "Player " + won + " Won!";
 		
@@ -44,4 +48,8 @@ public class UI {
         g.setColor(Color.white);        
         g.drawString(score, (gWidth - metr2.stringWidth(score)) / 2, gHeight - 30);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9c37ffd3d7bfcca1919ae900243c35b301ac8f1a
