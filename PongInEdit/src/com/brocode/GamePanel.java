@@ -17,13 +17,15 @@ import com.pu.PowerUp;
 
 public class GamePanel extends JPanel implements Runnable{
 
+	// STATIC SIZE
 	static final int GAME_WIDTH = 1280;
 	static final int GAME_HEIGHT = (int)(GAME_WIDTH * (0.5555));
-	static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH,GAME_HEIGHT);
-	int BALL_DIAMETER = 40;
 	static final int PADDLE_WIDTH = 25;
-	int PADDLE_HEIGHT = 100;
+	static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH,GAME_HEIGHT);
 	
+	// VARIABLE SIZE
+	int BALL_DIAMETER = 40;
+	int PADDLE_HEIGHT = 100;
 	int BALL_BIG = 100;
 	int BALL_SMALL = 20;
 	
@@ -33,17 +35,31 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int playState = 1;
 	public final int pauseState = 2;
 	
+	// GAME SYSTEM
+	Collision collision = new Collision(this);
+	UI ui = new UI(this, GAME_WIDTH, GAME_HEIGHT);
 	Thread gameThread;
 	Image image;
 	Graphics graphics;
 	Random random;
+	
+	// GAME OBJECT
 	Paddle paddle1;
 	Paddle paddle2;
 	Ball ball;
 	Score score;
 	
-	Image background, logo;
+	// GAME ASSET
+	Image background;
+	Image logo;
+	public Image pufaster;
+	public Image puslower;
+	public Image pulonger;
+	public Image pushorter;
+	public Image pubigger;
+	public Image pusmaller;
 	
+	// GAME POWERUP
 	PowerUp[] powerup;
 	PUbiggerball pubiggerball;
 	PUsmallerball pusmallerball;
@@ -51,8 +67,7 @@ public class GamePanel extends JPanel implements Runnable{
 	PUslowerball puslowerball;
 	PUlongerpaddle pulongerpaddle;
 	PUshorterpaddle pushorterpaddle;
-	Collision collision = new Collision(this);
-	UI ui = new UI(this, GAME_WIDTH, GAME_HEIGHT);
+	
 	
 	GamePanel(){
 		newPaddles();
@@ -100,12 +115,12 @@ public class GamePanel extends JPanel implements Runnable{
 	public void newPowerUp() {
 		random = new Random();
 		powerup = new PowerUp[6];
-		powerup[0] = new PUbiggerball((GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),BALL_BIG,BALL_BIG);
-		powerup[1] = new PUsmallerball((GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),BALL_BIG,BALL_BIG);
-		powerup[2] = new PUfasterball((GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),BALL_BIG,BALL_BIG);
-		powerup[3] = new PUslowerball((GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),BALL_BIG,BALL_BIG);
-		powerup[4] = new PUlongerpaddle((GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),BALL_BIG,BALL_BIG);
-		powerup[5] = new PUshorterpaddle((GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),BALL_BIG,BALL_BIG);
+		powerup[0] = new PUbiggerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
+		powerup[1] = new PUsmallerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
+		powerup[2] = new PUfasterball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
+		powerup[3] = new PUslowerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
+		powerup[4] = new PUlongerpaddle(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
+		powerup[5] = new PUshorterpaddle(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
 	}
 //	public void newPUbiggerball() {
 //		random = new Random();
@@ -152,6 +167,18 @@ public class GamePanel extends JPanel implements Runnable{
 		background = bg.getImage();
 		ImageIcon lg = new ImageIcon("assets/moonbouncelogofix.png");
 		logo = lg.getImage();
+		ImageIcon fs = new ImageIcon("assets/fasterpaddle.png");
+		pufaster = fs.getImage();
+		ImageIcon sw = new ImageIcon("assets/slowerpaddle.png");
+		puslower = sw.getImage();
+		ImageIcon ln = new ImageIcon("assets/longerpaddle.png");
+		pulonger = ln.getImage();
+		ImageIcon sr = new ImageIcon("assets/shorterpaddle.png");
+		pushorter = sr.getImage();
+		ImageIcon br = new ImageIcon("assets/biggerpaddle.png");
+		pubigger = br.getImage();
+		ImageIcon sm = new ImageIcon("assets/smallerpaddle.png");
+		pusmaller = sm.getImage();
 	}
 	
 	public void draw(Graphics g) {
@@ -173,7 +200,7 @@ public class GamePanel extends JPanel implements Runnable{
 //			for(PowerUp pu : this.powerup) {
 //				pu.draw(g);
 //			}
-			powerup[5].draw(g);
+			powerup[0].draw(g);
 			
 			score.draw(g);
 			
@@ -197,7 +224,7 @@ public class GamePanel extends JPanel implements Runnable{
 //		for (PowerUp powerUp2 : powerup) {
 //			powerUp2.move();
 //		}
-		powerup[5].move();
+		powerup[0].move();
 	}
 //	public void checkCollision() {
 //		

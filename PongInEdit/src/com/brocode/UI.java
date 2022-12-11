@@ -20,7 +20,11 @@ public class UI {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, gWidth, gHeight);
 		
+
 		g.drawImage(panel.logo, gWidth/2-100, gHeight/2-100, panel);
+
+		//g.drawImage(panel.moonBounce, gWidth/2-50, gHeight/2-50, panel);
+
 		
 //      String msg = "Player " + won + " Won!";
 		
@@ -44,4 +48,7 @@ public class UI {
         g.setColor(Color.white);        
         g.drawString(score, (gWidth - metr2.stringWidth(score)) / 2, gHeight - 30);
     }
+
 }
+
+
