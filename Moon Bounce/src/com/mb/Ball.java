@@ -1,10 +1,7 @@
 package com.mb;
 
 import java.awt.*;
-import java.awt.image.ImageObserver;
 import java.util.*;
-
-import javax.swing.ImageIcon;
 
 public class Ball extends Rectangle{
 
