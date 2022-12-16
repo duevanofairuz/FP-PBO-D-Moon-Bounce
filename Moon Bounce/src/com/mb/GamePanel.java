@@ -37,8 +37,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int titleState = 0;
 	public final int playState = 1;
 	public final int pauseState = 2;
-	public final int guideState = 3;	
-	
+	public final int guideState = 3;
+	public final int alterState = 4;
+
 	// GAME SYSTEM
 	Collision collision = new Collision(this);
 	UI ui = new UI(this, GAME_WIDTH, GAME_HEIGHT);
@@ -57,13 +58,13 @@ public class GamePanel extends JPanel implements Runnable{
 	// GAME ASSET
 	Image background;
 	Image logo;
+	Image guidescreen;
 	public Image pufaster;
 	public Image puslower;
 	public Image pulonger;
 	public Image pushorter;
 	public Image pubigger;
 	public Image pusmaller;
-	public Image guidescreen;
 	
 	// GAME POWERUP
 	PowerUp[] powerup;
@@ -120,11 +121,17 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void paint(Graphics g) {		
-		image = createImage(getWidth(),getHeight());
-		
-		graphics = image.getGraphics();
-		draw(graphics);
-		g.drawImage(image,0,0,this);
+		if(gameState != pauseState) {
+			image = createImage(getWidth(),getHeight());
+			
+			graphics = image.getGraphics();
+			draw(graphics);
+			g.drawImage(image,0,0,this);
+			
+		}
+		else if(gameState == pauseState) {
+
+		}
 	}
 	
 	public void loadImage() {
@@ -146,6 +153,7 @@ public class GamePanel extends JPanel implements Runnable{
 		pusmaller = sm.getImage();
 		ImageIcon gs = new ImageIcon("assets/guidescreen.png");
 		guidescreen = gs.getImage();
+		
 	}
 	
 	public void draw(Graphics g) {
@@ -154,6 +162,12 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 		else if(gameState == guideState) {
 			ui.guideScreen(g);
+		}
+		else if(gameState == alterState) {
+			ui.alterScreen(g);
+		}
+		else if(gameState == pauseState) {
+
 		}
 		else {
 			g.drawImage(background, 1, 1, this);
@@ -174,11 +188,16 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void move() {
-		paddle1.move();
-		paddle2.move();
-		ball.move();
+		if(gameState == playState) {
+			paddle1.move();
+			paddle2.move();
+			ball.move();
 		
-		powerup[0].move();
+			powerup[0].move();
+		}
+		else if(gameState == pauseState) {
+			
+		}
 	}
 
 	public void run() {

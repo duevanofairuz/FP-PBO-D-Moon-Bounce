@@ -12,6 +12,7 @@ public class KeyPanel extends KeyAdapter {
 	}
 	
 	public void keyPressed(KeyEvent e) {
+		
 		if(panel.gameState == panel.titleState) {
 			if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN) {
 				panel.optionNum++;
@@ -25,8 +26,8 @@ public class KeyPanel extends KeyAdapter {
 			}
 			if(e.getKeyChar() == '\n') {
 				if(panel.optionNum == 0) {
-					panel.gameState = panel.playState;
-					panel.gameThread.start();
+					panel.gameState = panel.alterState;
+					panel.repaint();
 				}
 				if(panel.optionNum == 1) {
 					panel.gameState = panel.guideState;
@@ -37,17 +38,55 @@ public class KeyPanel extends KeyAdapter {
 				}
 			}
 		}
+		
+		else if(panel.gameState == panel.alterState) {
+			if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN) {
+				panel.optionNum++;
+				panel.repaint();
+				if(panel.optionNum > 1) panel.optionNum = 0;
+			}
+			if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_UP) {
+				panel.optionNum--;
+				panel.repaint();
+				if(panel.optionNum < 0) panel.optionNum = 1;
+			}
+			if(e.getKeyChar() == '\n') {
+				if(panel.optionNum == 0) {
+					panel.gameState = panel.playState;
+					panel.gameThread.start();
+				}
+				if(panel.optionNum == 1) {
+					panel.gameState = panel.titleState;
+					panel.repaint(); 
+				}
+			}
+		}
+		
 		else if(panel.gameState == panel.guideState) {
-			if(e.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
+			if(e.getKeyChar() == KeyEvent.VK_ESCAPE) {
 				panel.gameState = panel.titleState;
 				panel.repaint(); 
 			}
 		}
+		
 		else if(panel.gameState == panel.playState) {
+			if(e.getKeyChar() == KeyEvent.VK_ESCAPE) {
+//				panel.gameState = panel.titleState;
+//				panel.repaint();
+				System.exit(0);
+			}
+			if(e.getKeyChar() == KeyEvent.VK_SPACE) {
+				panel.gameState = panel.pauseState;
+			}
 			panel.paddle1.keyPressed(e);
 			panel.paddle2.keyPressed(e);
 		}
 		
+		else if(panel.gameState == panel.pauseState) {
+			if(e.getKeyChar() == KeyEvent.VK_SPACE) {
+				panel.gameState = panel.playState;
+			}
+		}
 		
 	}
 	
