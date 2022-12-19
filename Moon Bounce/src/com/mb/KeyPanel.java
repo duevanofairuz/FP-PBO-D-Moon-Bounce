@@ -105,6 +105,7 @@ public class KeyPanel extends KeyAdapter {
 				}
 				if(panel.optionNum == 1) {
 					panel.gameState = panel.gPlayState;
+					panel.BALL_DIAMETER=40;
 					panel.newBall();
 					panel.newPaddles();
 					panel.newPowerUp();
@@ -113,6 +114,7 @@ public class KeyPanel extends KeyAdapter {
 				}
 				if(panel.optionNum == 2) {
 					panel.gameState = panel.titleState;
+					panel.BALL_DIAMETER=40;
 					panel.newBall();
 					panel.newPaddles();
 					panel.newPowerUp();
@@ -136,6 +138,7 @@ public class KeyPanel extends KeyAdapter {
 			if(e.getKeyChar() == '\n') {
 				if(panel.optionNum == 0) {
 					panel.gameState = panel.gPlayState;
+					panel.BALL_DIAMETER=40;
 					panel.newBall();
 					panel.newPaddles();
 					panel.newPowerUp();
@@ -144,6 +147,7 @@ public class KeyPanel extends KeyAdapter {
 				}
 				if(panel.optionNum == 1) {
 					panel.gameState = panel.titleState;
+					panel.BALL_DIAMETER=40;
 					panel.newBall();
 					panel.newPaddles();
 					panel.newPowerUp();

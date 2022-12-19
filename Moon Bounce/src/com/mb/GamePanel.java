@@ -46,6 +46,7 @@ public class GamePanel extends JPanel implements Runnable{
 	// GAME SYSTEM
 	Collision collision = new Collision(this);
 	UI ui = new UI(this, GAME_WIDTH, GAME_HEIGHT);
+	MusicPanel music = new MusicPanel();
 	Thread gameThread;
 	Image image;
 	Graphics graphics;
@@ -114,6 +115,10 @@ public class GamePanel extends JPanel implements Runnable{
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
+	
+//	public void setupGame() {
+//		playSound(0);
+//	}
 	
 	public void newBall() {
 		random = new Random();
@@ -201,7 +206,7 @@ public class GamePanel extends JPanel implements Runnable{
 		ball1 = b1.getImage();
 		ImageIcon b2 = new ImageIcon("assets/img/moonskin23.gif");
 		ball2 = b2.getImage();
-		ImageIcon b3 = new ImageIcon("assets/img/moonskin33.png");
+		ImageIcon b3 = new ImageIcon("assets/img/moonskin33.gif");
 		ball3 = b3.getImage();
 		ImageIcon g1 = new ImageIcon("assets/img/bgskin1+esc.png");
 		bgplay1 = g1.getImage();
@@ -250,7 +255,7 @@ public class GamePanel extends JPanel implements Runnable{
 			score2.draw(g);
 //			for(PowerUp pu : this.powerup) {
 //				pu.draw(g);
-//			}		
+//			}
 			Toolkit.getDefaultToolkit().sync();
 		}
 
@@ -267,6 +272,19 @@ public class GamePanel extends JPanel implements Runnable{
 		else if(gameState == pauseState) {
 			
 		}
+	}
+	
+	public void playSound(int i) {
+		music.setFile(i);
+		music.play();
+		music.loop();
+	}
+	public void playSFX(int i) {
+		music.stop();
+	}
+	public void stopSound(int i) {
+		music.setFile(i);
+		music.play();
 	}
 
 	public void run() {
