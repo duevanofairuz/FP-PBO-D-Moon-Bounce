@@ -33,6 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	// GAME STATE
 	public int gameState;
+	public int skinState;
 	public int playerWon;
 	public int optionNum = 0;
 	public final int titleState = 0;
@@ -59,10 +60,14 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	// GAME ASSET
 	Image titlebg;
-	Image playbg;
 	Image gameover;
 	Image logo;
 	Image guidescreen;
+	Image themescreen;
+	Image paddle1s1, paddle1s2, paddle1s3;
+	Image paddle2s1, paddle2s2, paddle2s3;
+	Image ball1, ball2, ball3;
+	Image bgplay1, bgplay2, bgplay3;
 	public Image pufaster;
 	public Image puslower;
 	public Image pulonger;
@@ -77,6 +82,7 @@ public class GamePanel extends JPanel implements Runnable{
 	Image startbutt;
 	Image infobutt;
 	Image exitbutt;
+	Image resumebutt;
 	
 	// GAME POWERUP
 	PowerUp[] powerup;
@@ -111,7 +117,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void newBall() {
 		random = new Random();
-		ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2),random.nextInt(GAME_HEIGHT-BALL_DIAMETER),BALL_DIAMETER,BALL_DIAMETER);
+		ball = new Ball(this, (GAME_WIDTH/2)-(BALL_DIAMETER/2),random.nextInt(GAME_HEIGHT-BALL_DIAMETER),BALL_DIAMETER,BALL_DIAMETER);
 	}
 	
 	
@@ -128,8 +134,8 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 		
 	public void newPaddles() {
-		paddle1 = new Paddle(50,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,1);
-		paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH-50,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,2);
+		paddle1 = new Paddle(this, 117,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,1);
+		paddle2 = new Paddle(this, GAME_WIDTH-PADDLE_WIDTH-120,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,2);
 	}
 	
 	public void newScore() {
@@ -138,22 +144,15 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void paint(Graphics g) {		
-		if(gameState != pauseState) {
 			image = createImage(getWidth(),getHeight());
 			
 			graphics = image.getGraphics();
 			draw(graphics);
 			g.drawImage(image,0,0,this);
-			
-		}
-		else if(gameState == pauseState) {
-			ui.pauseScreen(g);
-		}
+
 	}
 	
 	public void loadImage() {
-		ImageIcon pb = new ImageIcon("assets/img/bgplayscreen.png");
-		playbg = pb.getImage();
 		ImageIcon tb = new ImageIcon("assets/img/mainscreen.png");
 		titlebg = tb.getImage();
 		ImageIcon lg = new ImageIcon("assets/img/moonbouncelogofix.png");
@@ -184,6 +183,34 @@ public class GamePanel extends JPanel implements Runnable{
 		infobutt = in.getImage();
 		ImageIcon ex = new ImageIcon("assets/img/exitbutt.png");
 		exitbutt = ex.getImage();
+		ImageIcon rs = new ImageIcon("assets/img/resumebutt.png");
+		resumebutt = rs.getImage();
+		ImageIcon p1 = new ImageIcon("assets/img/paddle11.png");
+		paddle1s1 = p1.getImage();
+		ImageIcon p2 = new ImageIcon("assets/img/paddle21.png");
+		paddle2s1 = p2.getImage();
+		ImageIcon p3 = new ImageIcon("assets/img/paddle12.png");
+		paddle1s2 = p3.getImage();
+		ImageIcon p4 = new ImageIcon("assets/img/paddle22.png");
+		paddle2s2 = p4.getImage();
+		ImageIcon p5 = new ImageIcon("assets/img/paddle13.png");
+		paddle1s3 = p5.getImage();
+		ImageIcon p6 = new ImageIcon("assets/img/paddle23.png");
+		paddle2s3 = p6.getImage();
+		ImageIcon b1 = new ImageIcon("assets/img/moon10fps3.0.gif");
+		ball1 = b1.getImage();
+		ImageIcon b2 = new ImageIcon("assets/img/moonskin23.gif");
+		ball2 = b2.getImage();
+		ImageIcon b3 = new ImageIcon("assets/img/moonskin33.png");
+		ball3 = b3.getImage();
+		ImageIcon g1 = new ImageIcon("assets/img/bgskin1+esc.png");
+		bgplay1 = g1.getImage();
+		ImageIcon g2 = new ImageIcon("assets/img/bgskin2+esc.png");
+		bgplay2 = g2.getImage();
+		ImageIcon g3 = new ImageIcon("assets/img/bgskin3+esc.png");
+		bgplay3 = g3.getImage();
+		ImageIcon th = new ImageIcon("assets/img/themescreen.png");
+		themescreen = th.getImage();
 		
 	}
 	
@@ -198,13 +225,21 @@ public class GamePanel extends JPanel implements Runnable{
 			ui.alterScreen(g);
 		}
 		else if(gameState == pauseState) {
-
+			ui.pauseScreen(g);
 		}
 		else if(gameState == gOverState) {
 			ui.gOverScreen(g);
 		}
 		else {
-			g.drawImage(playbg , -4, 1, this);
+			if(skinState == 0) {
+				g.drawImage(bgplay1, 0, 0, this);
+			}
+			else if(skinState == 1) {
+				g.drawImage(bgplay2, 0, 0, this);
+			}
+			else if(skinState == 2) {
+				g.drawImage(bgplay3, 0, 0, this);
+			}
 			paddle1.draw(g);
 			paddle2.draw(g);
 			ball.draw(g);
@@ -233,15 +268,6 @@ public class GamePanel extends JPanel implements Runnable{
 			
 		}
 	}
-	
-	public void pumove() {
-		if(gameState == gPlayState) {
-			powerup[0].move();
-		}
-		else if(gameState == pauseState) {
-			
-		}
-	}
 
 	public void run() {
 		//game loop
@@ -255,12 +281,6 @@ public class GamePanel extends JPanel implements Runnable{
 			lastTime = now;
 			if(delta >=1) {
 				move();
-//				System.out.println(n);
-//				n++;
-//				if(n % 100 == 0) {
-//					System.out.println(n);
-//					pumove();
-//				}
 				collision.checkCollision();
 				repaint();
 				delta--;
