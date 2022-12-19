@@ -27,7 +27,7 @@ public class KeyPanel extends KeyAdapter {
 			}
 			if(e.getKeyChar() == '\n') {
 				if(panel.optionNum == 0) {
-					panel.gameState = panel.gPlayState;
+					panel.gameState = panel.alterState;
 					panel.repaint();
 				}
 				if(panel.optionNum == 1) {
@@ -45,20 +45,27 @@ public class KeyPanel extends KeyAdapter {
 			if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN) {
 				panel.optionNum++;
 				panel.repaint();
-				if(panel.optionNum > 1) panel.optionNum = 0;
+				if(panel.optionNum > 2) panel.optionNum = 0;
 			}
 			if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_UP) {
 				panel.optionNum--;
 				panel.repaint();
-				if(panel.optionNum < 0) panel.optionNum = 1;
+				if(panel.optionNum < 0) panel.optionNum = 2;
 			}
 			if(e.getKeyChar() == '\n') {
 				if(panel.optionNum == 0) {
-//					panel.gameState = panel.playState;
-					
+					panel.skinState = 0;
+					panel.gameState = panel.gPlayState;
+					panel.repaint(); 
 				}
 				if(panel.optionNum == 1) {
-					panel.gameState = panel.titleState;
+					panel.skinState = 1;
+					panel.gameState = panel.gPlayState;
+					panel.repaint(); 
+				}
+				if(panel.optionNum == 2) {
+					panel.skinState = 2;
+					panel.gameState = panel.gPlayState;
 					panel.repaint(); 
 				}
 			}
@@ -98,10 +105,19 @@ public class KeyPanel extends KeyAdapter {
 				}
 				if(panel.optionNum == 1) {
 					panel.gameState = panel.gPlayState;
+					panel.newBall();
+					panel.newPaddles();
+					panel.newPowerUp();
+					panel.newScore();
 					panel.repaint();
 				}
 				if(panel.optionNum == 2) {
-					System.exit(0);
+					panel.gameState = panel.titleState;
+					panel.newBall();
+					panel.newPaddles();
+					panel.newPowerUp();
+					panel.newScore();
+					panel.repaint();
 				}
 			}
 		}

@@ -19,20 +19,6 @@ public class UI {
 	public void titleScreen(Graphics g) {
         
 		g.drawImage(panel.titlebg, 0, 0, panel);
-//		g.drawImage(panel.logo, gWidth/2-100, gHeight/2-150, panel);
-
-//		g.drawImage(panel.moonBounce, gWidth/2-50, gHeight/2-50, panel);		
-//      String msg = "Player " + won + " Won!";
-		
-//        String msg = "Moon Bounce";
-//        Font mfont = new Font("Eras Demi ITC", Font.BOLD, 35);
-//        FontMetrics metr1 = g.getFontMetrics(mfont);
-//
-//        g.setFont(mfont);
-//        g.setColor(Color.GRAY);
-//        g.drawString(msg, ((gWidth - metr1.stringWidth(msg)) / 2) + 3, 155);
-//        g.setColor(Color.WHITE);        
-//        g.drawString(msg, (gWidth - metr1.stringWidth(msg)) / 2, 153);
 
 		g.drawImage(panel.startbutt, (gWidth / 2) - (162 / 2), 325, 162, 90, panel);
 		g.drawImage(panel.infobutt, (gWidth / 2) - (158 / 2), 405, 158, 90, panel);
@@ -68,17 +54,7 @@ public class UI {
 
 	public void alterScreen(Graphics g) {
         
-		g.drawImage(panel.titlebg, 0, 0, panel);
-		
-        String msg = "Skin Selection";
-        Font mfont = new Font("Eras Demi ITC", Font.BOLD, 35);
-        FontMetrics metr1 = g.getFontMetrics(mfont);
-
-        g.setFont(mfont);
-        g.setColor(Color.GRAY);
-        g.drawString(msg, ((gWidth - metr1.stringWidth(msg)) / 2) + 3, 155);
-        g.setColor(Color.WHITE);        
-        g.drawString(msg, (gWidth - metr1.stringWidth(msg)) / 2, 153);
+		g.drawImage(panel.themescreen, 0, 0, panel);
 
         String score = "Press 'Enter' to select!";
         Font sfont = new Font("Helvetica", Font.BOLD, 14);
@@ -90,19 +66,16 @@ public class UI {
         g.setColor(Color.WHITE);        
         g.drawString(score, (gWidth - metr2.stringWidth(score)) / 2, gHeight - 30);
         
-        // draw option
-        g.setColor(Color.GREEN);
-        g.fillRoundRect((gWidth / 2) - 75, gHeight - 280, 150, 40, 20, 20);
-        g.setColor(Color.RED);
-        g.fillRoundRect((gWidth / 2) - 75, gHeight - 160, 150, 40, 20, 20);
-        
         // draw selection
         g.setColor(Color.WHITE);
         if(panel.optionNum == 0) {
-        	g.drawRoundRect((gWidth / 2) - 80, gHeight - 285, 160, 50, 20, 20);
+        	g.drawRoundRect(48, 258, 372, 228, 20, 20);
         }
         else if(panel.optionNum == 1) {
-        	g.drawRoundRect((gWidth / 2) - 80, gHeight - 165, 160, 50, 20, 20);
+        	g.drawRoundRect(449, 258, 372, 228, 20, 20);
+        }
+        else if(panel.optionNum == 2) {
+        	g.drawRoundRect(850, 258, 372, 228, 20, 20);
         }
         
     }
@@ -112,7 +85,7 @@ public class UI {
 		g.setColor(new Color(0, 0, 0, 10));
 		g.fillRect(0, 0, gWidth, gHeight);
 		
-        String msg = "Pause";
+        String msg = "Paused";
         Font mfont = new Font("Eras Demi ITC", Font.BOLD, 55);
         FontMetrics metr1 = g.getFontMetrics(mfont);
 
@@ -122,6 +95,10 @@ public class UI {
         g.setColor(Color.WHITE);        
         g.drawString(msg, (gWidth - metr1.stringWidth(msg)) / 2, 153);
 
+        g.drawImage(panel.resumebutt, (gWidth / 2) - (170 / 2), 325, 170, 90, panel);
+		g.drawImage(panel.retrybutt, (gWidth / 2) - (158 / 2), 415, 158, 90, panel);
+		g.drawImage(panel.menubutt, (gWidth / 2) - (158 / 2), 505, 158, 90, panel);
+		
         String score = "Press 'Enter' to select!";
         Font sfont = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr2 = g.getFontMetrics(sfont);
@@ -132,24 +109,16 @@ public class UI {
         g.setColor(Color.WHITE);        
         g.drawString(score, (gWidth - metr2.stringWidth(score)) / 2, gHeight - 30);
         
-        // draw option
-        g.setColor(Color.GREEN);
-        g.fillRoundRect((gWidth / 2) - 75, gHeight - 300, 150, 40, 20, 20);
-        g.setColor(Color.YELLOW);
-        g.fillRoundRect((gWidth / 2) - 75, gHeight - 240, 150, 40, 20, 20);
-        g.setColor(Color.RED);
-        g.fillRoundRect((gWidth / 2) - 75, gHeight - 180, 150, 40, 20, 20);
-        
         // draw selection
         g.setColor(Color.WHITE);
         if(panel.optionNum == 0) {
-        	g.drawRoundRect((gWidth / 2) - 80, gHeight - 305, 160, 50, 20, 20);
+        	g.drawRoundRect(((gWidth / 2) - (170 / 2)) - 3, 320, 174, 85, 20, 20);
         }
         else if(panel.optionNum == 1) {
-        	g.drawRoundRect((gWidth / 2) - 80, gHeight - 245, 160, 50, 20, 20);
+        	g.drawRoundRect(((gWidth / 2) - (158 / 2)) - 5, 414, 168, 80, 20, 20);
         }
         else if(panel.optionNum == 2) {
-        	g.drawRoundRect((gWidth / 2) - 80, gHeight - 185, 160, 50, 20, 20);
+        	g.drawRoundRect(((gWidth / 2) - (158 / 2)) - 5, 504, 168, 80, 20, 20);
         }
         
     }
@@ -159,14 +128,14 @@ public class UI {
 		g.drawImage(panel.gameover, 0, 0, panel);
 		
 		String msg = "Player " + panel.playerWon + " Won!";
-        Font mfont = new Font("Eras Demi ITC", Font.BOLD, 55);
+        Font mfont = new Font("Consolas", Font.PLAIN, 25);
         FontMetrics metr1 = g.getFontMetrics(mfont);
 
         g.setFont(mfont);
         g.setColor(Color.GRAY);
-        g.drawString(msg, ((gWidth - metr1.stringWidth(msg)) / 2) + 3, 155);
+        g.drawString(msg, ((gWidth - metr1.stringWidth(msg)) / 2) + 2, 342);
         g.setColor(Color.WHITE);        
-        g.drawString(msg, (gWidth - metr1.stringWidth(msg)) / 2, 153);
+        g.drawString(msg, (gWidth - metr1.stringWidth(msg)) / 2, 340);
 
         String score = "Press 'Enter' to select!";
         Font sfont = new Font("Helvetica", Font.BOLD, 14);
@@ -179,16 +148,16 @@ public class UI {
         g.drawString(score, (gWidth - metr2.stringWidth(score)) / 2, gHeight - 30);
         
         // draw option
-        g.drawImage(panel.menubutt, (gWidth / 2) - 75, gHeight - 300, 150, 40, panel);
-        g.drawImage(panel.menubutt, (gWidth / 2) - 75, gHeight - 240, 150, 40, panel);
+        g.drawImage(panel.retrybutt, (gWidth / 2) - (158 / 2), 415, 158, 90, panel);
+		g.drawImage(panel.menubutt, (gWidth / 2) - (158 / 2), 505, 158, 90, panel);
         
         // draw selection
         g.setColor(Color.WHITE);
         if(panel.optionNum == 0) {
-        	g.drawRoundRect((gWidth / 2) - 80, gHeight - 305, 160, 50, 20, 20);
+        	g.drawRoundRect(((gWidth / 2) - (158 / 2)) - 5, 414, 168, 80, 20, 20);
         }
         else if(panel.optionNum == 1) {
-        	g.drawRoundRect((gWidth / 2) - 80, gHeight - 245, 160, 50, 20, 20);
+        	g.drawRoundRect(((gWidth / 2) - (158 / 2)) - 5, 504, 168, 80, 20, 20);
         }
         
     }

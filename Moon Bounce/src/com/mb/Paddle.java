@@ -5,12 +5,14 @@ import java.awt.event.*;
 
 public class Paddle extends Rectangle{
 
+	GamePanel panel;
 	int id;
 	int yVelocity;
 	int speed = 10;
 	
-	Paddle(int x, int y, int PADDLE_WIDTH, int PADDLE_HEIGHT, int id){
+	Paddle(GamePanel panel, int x, int y, int PADDLE_WIDTH, int PADDLE_HEIGHT, int id){
 		super(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);
+		this.panel = panel;
 		this.id=id;
 	}
 	
@@ -61,10 +63,26 @@ public class Paddle extends Rectangle{
 		y= y + yVelocity;
 	}
 	public void draw(Graphics g) {
-		if(id==1)
-			g.setColor(Color.blue);
+		if(id==1) {
+			if(panel.skinState == 0) {
+				g.drawImage(panel.paddle1s1, x, y, width, height, panel);
+			}
+			else if(panel.skinState == 1) {
+				g.drawImage(panel.paddle1s2, x, y, width, height, panel);
+			}
+			else if(panel.skinState == 2) {
+				g.drawImage(panel.paddle1s3, x, y, width, height, panel);
+			}
+		}
 		else
-			g.setColor(Color.red);
-		g.fillRect(x, y, width, height);
+			if(panel.skinState == 0) {
+			g.drawImage(panel.paddle2s1, x, y, width, height, panel);
+		}
+		else if(panel.skinState == 1) {
+			g.drawImage(panel.paddle2s2, x, y, width, height, panel);
+		}
+		else if(panel.skinState == 2) {
+			g.drawImage(panel.paddle2s3, x, y, width, height, panel);
+		}
 	}
 }

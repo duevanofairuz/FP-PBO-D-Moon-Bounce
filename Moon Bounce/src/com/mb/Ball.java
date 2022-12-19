@@ -5,13 +5,15 @@ import java.util.*;
 
 public class Ball extends Rectangle{
 
+	GamePanel panel;
 	Random random;
 	int xVelocity;
 	int yVelocity;
 	int initialSpeed = 2;
 	
-	Ball(int x, int y, int width, int height){
+	Ball(GamePanel panel, int x, int y, int width, int height){
 		super(x,y,width,height);
+		this.panel = panel;
 		random = new Random();
 		int randomXDirection = random.nextInt(2);
 		if(randomXDirection == 0)
@@ -37,7 +39,14 @@ public class Ball extends Rectangle{
 	}
 	
 	public void draw(Graphics g) {
-		g.setColor(Color.GRAY);
-		g.fillOval(x, y, height, width);
+		if(panel.skinState == 0) {
+			g.drawImage(panel.ball1, x, y, width, height, panel);
+		}
+		else if(panel.skinState == 1) {
+			g.drawImage(panel.ball2, x, y, width, height, panel);
+		}
+		else if(panel.skinState == 2) {
+			g.drawImage(panel.ball3, x, y, width, height, panel);
+		}
 	}
 }
