@@ -59,6 +59,13 @@ public class Collision {
 			
 			panel.newBall();
 			panel.newPowerUp();
+			
+			// game over state
+			if(panel.score1.barWidth == 0) {
+				panel.gameState = panel.gOverState;
+				panel.playerWon = 1;
+			}
+			
 //			System.out.println("Player 2: "+panel.score.player2);
 		}
 		if(panel.ball.x >= panel.GAME_WIDTH-panel.BALL_DIAMETER) {
@@ -73,6 +80,13 @@ public class Collision {
 			
 			panel.newBall();
 			panel.newPowerUp();
+			
+			// game over state
+			if(panel.score2.barWidth == 0) {
+				panel.gameState = panel.gOverState;
+				panel.playerWon = 2;
+			}
+			
 //			System.out.println("Player 1: "+panel.score.player1);
 		}
 		
