@@ -94,15 +94,6 @@ public class GamePanel extends JPanel implements Runnable{
 	GamePanel(){
 		newPaddles();
 		newBall();
-//		Timer timer = new Timer();
-//		TimerTask taskpubig = new TimerTask() {
-//			@Override
-//			public void run() {
-//				newPUbiggerball();
-//			}
-//		};
-//		timer.schedule(taskpubig, 0, 5000);
-
 		newPowerUp();
 		newScore();
 		
@@ -132,12 +123,12 @@ public class GamePanel extends JPanel implements Runnable{
 	public void newPowerUp() {
 		random = new Random();
 		powerup = new PowerUp[6];
-		powerup[0] = new PUbiggerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
-		powerup[1] = new PUsmallerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
-		powerup[2] = new PUfasterball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
-		powerup[3] = new PUslowerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
-		powerup[4] = new PUlongerpaddle(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
-		powerup[5] = new PUshorterpaddle(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG),PADDLE_WIDTH,BALL_BIG);
+		powerup[0] = new PUbiggerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG), BALL_BIG, PADDLE_WIDTH);
+		powerup[1] = new PUsmallerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG), BALL_BIG, PADDLE_WIDTH);
+		powerup[2] = new PUfasterball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG), BALL_BIG, PADDLE_WIDTH);
+		powerup[3] = new PUslowerball(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG), BALL_BIG, PADDLE_WIDTH);
+		powerup[4] = new PUlongerpaddle(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG), BALL_BIG, PADDLE_WIDTH);
+		powerup[5] = new PUshorterpaddle(this, (GAME_WIDTH/2)-(BALL_BIG/2),random.nextInt(GAME_HEIGHT-BALL_BIG), BALL_BIG, PADDLE_WIDTH);
 	}
 		
 	public void newPaddles() {
@@ -172,9 +163,9 @@ public class GamePanel extends JPanel implements Runnable{
 		pulonger = ln.getImage();
 		ImageIcon sr = new ImageIcon("assets/img/shorterpaddle.png");
 		pushorter = sr.getImage();
-		ImageIcon br = new ImageIcon("assets/img/biggerpaddle.png");
+		ImageIcon br = new ImageIcon("assets/img/biggerball.png");
 		pubigger = br.getImage();
-		ImageIcon sm = new ImageIcon("assets/img/smallerpaddle.png");
+		ImageIcon sm = new ImageIcon("assets/img/smallerball.png");
 		pusmaller = sm.getImage();
 		ImageIcon gs = new ImageIcon("assets/img/menuinfoscreen.png");
 		guidescreen = gs.getImage();
