@@ -2,10 +2,12 @@ package com.mb;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 public class KeyPanel extends KeyAdapter {
 
 	GamePanel panel;
+	Random random;
 	
 	public KeyPanel(GamePanel panel) {
 		this.panel = panel;
@@ -119,6 +121,10 @@ public class KeyPanel extends KeyAdapter {
 					panel.newPaddles();
 					panel.newPowerUp();
 					panel.newScore();
+					
+					random = new Random();
+					panel.pwrupIndx = random.nextInt(6);
+					
 					panel.repaint();
 				}
 				if(panel.optionNum == 2) {
@@ -128,6 +134,10 @@ public class KeyPanel extends KeyAdapter {
 					panel.newPaddles();
 					panel.newPowerUp();
 					panel.newScore();
+					
+					random = new Random();
+					panel.pwrupIndx = random.nextInt(6);
+					
 					panel.repaint();
 				}
 			}
@@ -155,6 +165,10 @@ public class KeyPanel extends KeyAdapter {
 					panel.newPaddles();
 					panel.newPowerUp();
 					panel.newScore();
+					
+					random = new Random();
+					panel.pwrupIndx = random.nextInt(6);
+					
 					panel.repaint();
 				}
 				if(panel.optionNum == 1) {
@@ -164,6 +178,10 @@ public class KeyPanel extends KeyAdapter {
 					panel.newPaddles();
 					panel.newPowerUp();
 					panel.newScore();
+					
+					random = new Random();
+					panel.pwrupIndx = random.nextInt(6);
+					
 					panel.repaint();
 				}
 
