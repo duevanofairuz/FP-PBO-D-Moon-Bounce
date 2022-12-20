@@ -1,7 +1,10 @@
 package com.mb;
 
+import java.util.Random;
+
 public class Collision {
 	GamePanel panel;
+	Random random;
 	
 	public Collision(GamePanel panel) {
 		this.panel = panel;
@@ -65,6 +68,9 @@ public class Collision {
 			panel.newBall();
 			panel.newPowerUp();
 			
+			random = new Random();
+			panel.pwrupIndx = random.nextInt(6);
+			
 			// game over state
 			if(panel.score1.barWidth == 0) {
 				panel.gameState = panel.gOverState;
@@ -86,6 +92,9 @@ public class Collision {
 			
 			panel.newBall();
 			panel.newPowerUp();
+			
+			random = new Random();
+			panel.pwrupIndx = random.nextInt(6);
 			
 			// game over state
 			if(panel.score2.barWidth == 0) {
