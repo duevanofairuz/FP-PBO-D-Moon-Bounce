@@ -22,6 +22,7 @@ public class Collision {
 		
 		//bounce ball off paddles
 		if(panel.ball.intersects(panel.paddle1)) {
+			panel.playSFX(2);
 			panel.ball.xVelocity = Math.abs(panel.ball.xVelocity);
 			panel.ball.xVelocity++; //optional for more difficulty
 			if(panel.ball.yVelocity>0)
@@ -32,6 +33,7 @@ public class Collision {
 			panel.ball.setYDirection(panel.ball.yVelocity);
 		}
 		if(panel.ball.intersects(panel.paddle2)) {
+			panel.playSFX(2);
 			panel.ball.xVelocity = Math.abs(panel.ball.xVelocity);
 			panel.ball.xVelocity++; //optional for more difficulty
 			if(panel.ball.yVelocity>0)
