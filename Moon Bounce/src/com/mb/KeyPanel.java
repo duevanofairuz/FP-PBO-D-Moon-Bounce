@@ -16,16 +16,19 @@ public class KeyPanel extends KeyAdapter {
 		// TITLE KEY
 		if(panel.gameState == panel.titleState) {
 			if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN) {
+				panel.playSFX(5);
 				panel.optionNum++;
 				panel.repaint();
 				if(panel.optionNum > 2) panel.optionNum = 0;
 			}
 			if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_UP) {
+				panel.playSFX(5);
 				panel.optionNum--;
 				panel.repaint();
 				if(panel.optionNum < 0) panel.optionNum = 2;
 			}
 			if(e.getKeyChar() == '\n') {
+				panel.playSFX(1);
 				if(panel.optionNum == 0) {
 					panel.gameState = panel.alterState;
 					panel.repaint();
@@ -43,16 +46,19 @@ public class KeyPanel extends KeyAdapter {
 		// SKIN KEY
 		else if(panel.gameState == panel.alterState) {
 			if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN) {
+				panel.playSFX(5);
 				panel.optionNum++;
 				panel.repaint();
 				if(panel.optionNum > 2) panel.optionNum = 0;
 			}
 			if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_UP) {
+				panel.playSFX(5);
 				panel.optionNum--;
 				panel.repaint();
 				if(panel.optionNum < 0) panel.optionNum = 2;
 			}
 			if(e.getKeyChar() == '\n') {
+				panel.playSFX(1);
 				if(panel.optionNum == 0) {
 					panel.skinState = 0;
 					panel.gameState = panel.gPlayState;
@@ -89,16 +95,19 @@ public class KeyPanel extends KeyAdapter {
 		
 		else if(panel.gameState == panel.pauseState) {
 			if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN) {
+				panel.playSFX(5);
 				panel.optionNum++;
 				panel.repaint();
 				if(panel.optionNum > 2) panel.optionNum = 0;
 			}
 			if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_UP) {
+				panel.playSFX(5);
 				panel.optionNum--;
 				panel.repaint();
 				if(panel.optionNum < 0) panel.optionNum = 2;
 			}
 			if(e.getKeyChar() == '\n') {
+				panel.playSFX(1);
 				if(panel.optionNum == 0) {
 					panel.gameState = panel.gPlayState;
 					panel.repaint();
@@ -126,16 +135,19 @@ public class KeyPanel extends KeyAdapter {
 		
 		else if(panel.gameState == panel.gOverState) {
 			if(e.getKeyCode()==KeyEvent.VK_S || e.getKeyCode()==KeyEvent.VK_DOWN) {
+				panel.playSFX(5);
 				panel.optionNum++;
 				panel.repaint();
 				if(panel.optionNum > 1) panel.optionNum = 0;
 			}
 			if(e.getKeyCode()==KeyEvent.VK_W || e.getKeyCode()==KeyEvent.VK_UP) {
+				panel.playSFX(5);
 				panel.optionNum--;
 				panel.repaint();
 				if(panel.optionNum < 0) panel.optionNum = 1;
 			}
 			if(e.getKeyChar() == '\n') {
+				panel.playSFX(1);
 				if(panel.optionNum == 0) {
 					panel.gameState = panel.gPlayState;
 					panel.BALL_DIAMETER=40;

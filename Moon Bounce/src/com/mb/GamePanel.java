@@ -47,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
 	Collision collision = new Collision(this);
 	UI ui = new UI(this, GAME_WIDTH, GAME_HEIGHT);
 	MusicPanel music = new MusicPanel();
+	MusicPanel sfx = new MusicPanel();
 	Thread gameThread;
 	Image image;
 	Graphics graphics;
@@ -112,6 +113,7 @@ public class GamePanel extends JPanel implements Runnable{
 		loadImage();
 		gameState = titleState;
 		
+		playSound(0);
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
@@ -280,11 +282,11 @@ public class GamePanel extends JPanel implements Runnable{
 		music.loop();
 	}
 	public void playSFX(int i) {
-		music.stop();
+		sfx.setFile(i);
+		sfx.play();
 	}
-	public void stopSound(int i) {
-		music.setFile(i);
-		music.play();
+	public void stopSound() {
+		music.stop();
 	}
 
 	public void run() {

@@ -8,16 +8,16 @@ import javax.sound.sampled.Clip;
 
 public class MusicPanel {
 	Clip clip;
-	URL musicURL[] = new URL[30];
+	URL musicURL[] = new URL[6];
 	
 	public MusicPanel() {
 		
-		musicURL[0] = getClass().getResource("assets/sound/bgmusicloop.wav");
-		musicURL[1] = getClass().getResource("assets/sound/clickbutton.wav");
-		musicURL[2] = getClass().getResource("assets/sound/moonbounc.wav");
-		musicURL[3] = getClass().getResource("assets/sound/moondestroyed.wav");
-		musicURL[4] = getClass().getResource("assets/sound/powerupsound.wav");
-		musicURL[5] = getClass().getResource("assets/sound/switchbutton.wav");
+		musicURL[0] = getClass().getResource("/music/bgmusicloop.wav");
+		musicURL[1] = getClass().getResource("/music/clickbutton.wav");
+		musicURL[2] = getClass().getResource("/music/moonbounc.wav");
+		musicURL[3] = getClass().getResource("/music/moondestroyed.wav");
+		musicURL[4] = getClass().getResource("/music/powerupsound.wav");
+		musicURL[5] = getClass().getResource("/music/switchbutton.wav");
 	}
 	
 	public void setFile(int i) {
