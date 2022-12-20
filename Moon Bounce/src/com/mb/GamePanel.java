@@ -32,9 +32,10 @@ public class GamePanel extends JPanel implements Runnable{
 	int SCORE_MIN = 80;
 	
 	// GAME STATE
-	public int gameState;
+	public int gameState;	
 	public int skinState;
 	public int playerWon;
+	public int pwrupIndx;
 	public int optionNum = 0;
 	public final int titleState = 0;
 	public final int gPlayState = 1;
@@ -105,6 +106,9 @@ public class GamePanel extends JPanel implements Runnable{
 
 		newPowerUp();
 		newScore();
+		
+		random = new Random();
+		pwrupIndx = random.nextInt(6);
 		
 		this.setFocusable(true);
 		this.addKeyListener(new KeyPanel(this));
@@ -251,7 +255,7 @@ public class GamePanel extends JPanel implements Runnable{
 			paddle2.draw(g);
 			ball.draw(g);
 			
-			powerup[0].draw(g);			
+			powerup[pwrupIndx].draw(g);			
 			
 			score1.draw(g);
 			score2.draw(g);
@@ -269,7 +273,7 @@ public class GamePanel extends JPanel implements Runnable{
 			paddle2.move();
 			ball.move();
 		
-			powerup[0].move();
+			powerup[pwrupIndx].move();
 		}
 		else if(gameState == pauseState) {
 			
