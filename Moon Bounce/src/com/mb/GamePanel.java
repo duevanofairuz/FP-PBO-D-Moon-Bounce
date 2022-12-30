@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 	UI ui = new UI(this, GAME_WIDTH, GAME_HEIGHT);
 	MusicPanel music = new MusicPanel();
 	MusicPanel sfx = new MusicPanel();
+	ImageLoader imgloader = new ImageLoader(this);
 	Thread gameThread;
 	Image image;
 	Graphics graphics;
@@ -64,7 +65,6 @@ public class GamePanel extends JPanel implements Runnable{
 	// GAME ASSET
 	Image titlebg;
 	Image gameover;
-	Image logo;
 	Image guidescreen;
 	Image themescreen;
 	Image paddle1s1, paddle1s2, paddle1s3;
@@ -90,8 +90,6 @@ public class GamePanel extends JPanel implements Runnable{
 	// GAME POWERUP
 	PowerUp[] powerup;
 	
-	int n = 0;
-	
 	GamePanel(){
 		newPaddles();
 		newBall();
@@ -102,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable{
 		this.addKeyListener(new KeyPanel(this));
 		this.setPreferredSize(SCREEN_SIZE);
 		
-		loadImage();
+		imgloader.loadImage();
 		gameState = titleState;
 		
 		random = new Random();
@@ -113,15 +111,10 @@ public class GamePanel extends JPanel implements Runnable{
 		gameThread.start();
 	}
 	
-//	public void setupGame() {
-//		playSound(0);
-//	}
-	
 	public void newBall() {
 		random = new Random();
 		ball = new Ball(this, (GAME_WIDTH/2)-(BALL_DIAMETER/2),random.nextInt(GAME_HEIGHT-BALL_DIAMETER),BALL_DIAMETER,BALL_DIAMETER);
 	}
-	
 	
 	/**/
 	public void newPowerUp() {
@@ -152,68 +145,6 @@ public class GamePanel extends JPanel implements Runnable{
 			draw(graphics);
 			g.drawImage(image,0,0,this);
 
-	}
-	
-	public void loadImage() {
-		ImageIcon tb = new ImageIcon("assets/img/mainscreen.png");
-		titlebg = tb.getImage();
-		ImageIcon lg = new ImageIcon("assets/img/moonbouncelogofix.png");
-		logo = lg.getImage();
-		ImageIcon fs = new ImageIcon("assets/img/fasterpaddle.png");
-		pufaster = fs.getImage();
-		ImageIcon sw = new ImageIcon("assets/img/slowerpaddle.png");
-		puslower = sw.getImage();
-		ImageIcon ln = new ImageIcon("assets/img/longerpaddle.png");
-		pulonger = ln.getImage();
-		ImageIcon sr = new ImageIcon("assets/img/shorterpaddle.png");
-		pushorter = sr.getImage();
-		ImageIcon br = new ImageIcon("assets/img/biggerball.png");
-		pubigger = br.getImage();
-		ImageIcon sm = new ImageIcon("assets/img/smallerball.png");
-		pusmaller = sm.getImage();
-		ImageIcon gs = new ImageIcon("assets/img/menuinfoscreen.png");
-		guidescreen = gs.getImage();
-		ImageIcon go = new ImageIcon("assets/img/gameover.png");
-		gameover = go.getImage();
-		ImageIcon mn = new ImageIcon("assets/img/menubutt.png");
-		menubutt = mn.getImage();
-		ImageIcon rt = new ImageIcon("assets/img/retrybutt.png");
-		retrybutt = rt.getImage();
-		ImageIcon st = new ImageIcon("assets/img/startbutt.png");
-		startbutt = st.getImage();
-		ImageIcon in = new ImageIcon("assets/img/infobutt.png");
-		infobutt = in.getImage();
-		ImageIcon ex = new ImageIcon("assets/img/exitbutt.png");
-		exitbutt = ex.getImage();
-		ImageIcon rs = new ImageIcon("assets/img/resumebutt.png");
-		resumebutt = rs.getImage();
-		ImageIcon p1 = new ImageIcon("assets/img/paddle11.png");
-		paddle1s1 = p1.getImage();
-		ImageIcon p2 = new ImageIcon("assets/img/paddle21.png");
-		paddle2s1 = p2.getImage();
-		ImageIcon p3 = new ImageIcon("assets/img/paddle12.png");
-		paddle1s2 = p3.getImage();
-		ImageIcon p4 = new ImageIcon("assets/img/paddle22.png");
-		paddle2s2 = p4.getImage();
-		ImageIcon p5 = new ImageIcon("assets/img/paddle13.png");
-		paddle1s3 = p5.getImage();
-		ImageIcon p6 = new ImageIcon("assets/img/paddle23.png");
-		paddle2s3 = p6.getImage();
-		ImageIcon b1 = new ImageIcon("assets/img/moon10fps3.0.gif");
-		ball1 = b1.getImage();
-		ImageIcon b2 = new ImageIcon("assets/img/moonskin23.gif");
-		ball2 = b2.getImage();
-		ImageIcon b3 = new ImageIcon("assets/img/moonskin33.gif");
-		ball3 = b3.getImage();
-		ImageIcon g1 = new ImageIcon("assets/img/bgskin1+esc.png");
-		bgplay1 = g1.getImage();
-		ImageIcon g2 = new ImageIcon("assets/img/bgskin2+esc.png");
-		bgplay2 = g2.getImage();
-		ImageIcon g3 = new ImageIcon("assets/img/bgskin3+esc.png");
-		bgplay3 = g3.getImage();
-		ImageIcon th = new ImageIcon("assets/img/themescreen.png");
-		themescreen = th.getImage();
-		
 	}
 	
 	public void draw(Graphics g) {
